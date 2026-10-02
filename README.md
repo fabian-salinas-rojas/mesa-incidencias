@@ -19,8 +19,9 @@ prioridad, y agregar comentarios de seguimiento.
 
 ## Contacto
 
-*   Autor: Fabián Salinas Rojas
+*   Autor: Fabian Salinas Rojas
 *   GitHub: [fabian-salinas-rojas](https://github.com/fabian-salinas-rojas)
+*   LinkedIn: [Fabián Salinas Rojas](https://www.linkedin.com/in/fabian-armando-salinas-rojas-205849404/)
 
 ## Tecnologías
 

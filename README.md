@@ -150,9 +150,17 @@ Valores permitidos:
 *   Estado: `abierta`, `en_proceso`, `resuelta`, `cerrada`.
 *   Prioridad: `baja`, `media`, `alta`, `critica`.
 
+## Pruebas
+
+Con la base de datos levantada:
+
+```
+cd backend
+npm test
+```
+
 ## Próximos pasos
 
-*   Pruebas automatizadas con Jest.
 *   Frontend para gestionar las incidencias.
 
 ## Licencia

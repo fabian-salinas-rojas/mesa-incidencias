@@ -128,5 +128,10 @@ app.post('/incidencias/:id/comentarios', async (req, res) => {
   }
 });
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`API en http://localhost:${PORT}`));
+const PORT = process.env.PORT || 3000;
+
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`API en http://localhost:${PORT}`));
+}
+
+module.exports = app;

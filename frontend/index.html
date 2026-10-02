@@ -3,52 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesa de Incidencias</title>
+  <title>Mesa de incidencias</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Mesa de Incidencias</h1>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="ancho">
+      <h1>Mesa de incidencias</h1>
+      <p>Soporte TI</p>
+    </div>
   </header>
 
-  <main>
-    <section class="card">
-      <h2>Nueva incidencia</h2>
-      <form id="form-nueva">
-        <input type="text" id="titulo" placeholder="Título" required>
-        <textarea id="descripcion" placeholder="Descripción" required></textarea>
-        <select id="prioridad">
-          <option value="baja">Baja</option>
-          <option value="media" selected>Media</option>
-          <option value="alta">Alta</option>
-          <option value="critica">Crítica</option>
-        </select>
-        <input type="number" id="reportado_por" placeholder="ID del usuario que reporta" min="1" value="1" required>
-        <button type="submit">Crear incidencia</button>
-      </form>
-      <p id="mensaje" class="mensaje"></p>
-    </section>
+  <nav class="nav" aria-label="Principal">
+    <div class="ancho nav-in">
+      <a href="#contenido" aria-current="page">Incidencias</a>
+      <button type="button" class="nav-btn" id="abrir-form" data-accion="crear">Crear incidencia</button>
+    </div>
+  </nav>
 
-    <section class="card">
-      <h2>Incidencias</h2>
-      <div class="tabla-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Título</th>
-              <th>Prioridad</th>
-              <th>Reportado por</th>
-              <th>Asignado a</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody id="tabla"></tbody>
-        </table>
-      </div>
-    </section>
+  <main id="contenido" class="ancho">
+    <h2 class="titulo-pagina" id="t-lista">Listado de incidencias</h2>
+
+    <div class="marco">
+      <section class="caja" aria-labelledby="t-lista">
+
+        <!-- Pestañas = filtros por estado -->
+        <div class="cola" role="group" aria-label="Filtrar por estado">
+          <button type="button" class="chip" data-estado="todas" aria-pressed="true"><span class="n">0</span><span class="t">Todas</span></button>
+          <button type="button" class="chip" data-estado="abierta" aria-pressed="false"><span class="n">0</span><span class="t">Abiertas</span></button>
+          <button type="button" class="chip" data-estado="en_proceso" aria-pressed="false"><span class="n">0</span><span class="t">En proceso</span></button>
+          <button type="button" class="chip" data-estado="resuelta" aria-pressed="false"><span class="n">0</span><span class="t">Resueltas</span></button>
+          <button type="button" class="chip" data-estado="cerrada" aria-pressed="false"><span class="n">0</span><span class="t">Cerradas</span></button>
+        </div>
+
+        <div class="herramientas">
+          <div class="campo campo-buscar">
+            <label for="buscar">Buscar</label>
+            <input type="search" id="buscar" placeholder="Título, persona o ID" autocomplete="off">
+          </div>
+          <div class="campo">
+            <label for="f-prioridad">Prioridad</label>
+            <select id="f-prioridad">
+              <option value="todas">Todas</option>
+              <option value="critica">Crítica</option>
+              <option value="alta">Alta</option>
+              <option value="media">Media</option>
+              <option value="baja">Baja</option>
+            </select>
+          </div>
+          <p class="meta resumen" id="conteo" role="status"></p>
+        </div>
+
+        <div class="tabla-wrap" aria-busy="true">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Título</th>
+                <th scope="col">Prioridad</th>
+                <th scope="col">Reportado por</th>
+                <th scope="col">Asignado a</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="tabla">
+              <tr data-skeleton><td><i class="sk" style="width:24px"></i></td><td><i class="sk" style="width:70%"></i></td><td><i class="sk" style="width:56px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:104px"></i></td></tr>
+              <tr data-skeleton><td><i class="sk" style="width:24px"></i></td><td><i class="sk" style="width:55%"></i></td><td><i class="sk" style="width:56px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:104px"></i></td></tr>
+              <tr data-skeleton><td><i class="sk" style="width:24px"></i></td><td><i class="sk" style="width:62%"></i></td><td><i class="sk" style="width:56px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:80px"></i></td><td><i class="sk" style="width:104px"></i></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="vacio" id="vacio" hidden></div>
+      </section>
+    </div>
   </main>
 
+  <footer class="pie">
+    <div class="ancho">Mesa de incidencias · Proyecto personal de práctica</div>
+  </footer>
+
+  <dialog id="dlg" aria-labelledby="t-nueva">
+    <form id="form-nueva" novalidate>
+      <div class="dlg-cab">
+        <h2 id="t-nueva">Nueva incidencia</h2>
+        <p class="borrador" id="borrador" hidden>
+          Borrador restaurado.
+          <button type="button" class="enlace" id="descartar">Descartar borrador</button>
+        </p>
+      </div>
+
+      <div class="dlg-cuerpo">
+        <div class="campo">
+          <label for="titulo">Título</label>
+          <input type="text" id="titulo" placeholder="Ej.: Sin acceso a la VPN" autocomplete="off" required aria-describedby="err-titulo">
+          <p class="error" id="err-titulo" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" required aria-describedby="err-descripcion"></textarea>
+          <p class="error" id="err-descripcion" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad">
+            <option value="baja">Baja</option>
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+            <option value="critica">Crítica</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="reportado_por">ID del usuario que reporta</label>
+          <input type="number" id="reportado_por" min="1" step="1" value="1" required aria-describedby="ayuda-rep err-reportado_por">
+          <p class="ayuda" id="ayuda-rep">Número de usuario registrado, desde 1.</p>
+          <p class="error" id="err-reportado_por" hidden></p>
+        </div>
+        <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="dlg-pie">
+        <button type="button" class="btn btn-sec" id="cancelar">Cancelar</button>
+        <button type="submit" class="btn">Crear incidencia</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- ux.js va ANTES de app.js -->
+  <script src="ux.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

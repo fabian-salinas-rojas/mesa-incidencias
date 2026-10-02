@@ -39,7 +39,8 @@ prioridad, y agregar comentarios de seguimiento.
 
 ```text
 mesa-incidencias/
-├── backend/            API (db.js, index.js)
+├── .github/workflows/  CI con GitHub Actions
+├── backend/            API (db.js, index.js) y pruebas (index.test.js)
 ├── db/
 │   ├── schema.sql      Tablas e índices
 │   └── seed.sql        Datos de prueba

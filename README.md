@@ -34,6 +34,7 @@ prioridad, y agregar comentarios de seguimiento.
     [`dotenv`](https://github.com/motdotla/dotenv)
 *   Pruebas con [Jest](https://jestjs.io/) y
     [Supertest](https://github.com/ladjs/supertest)
+*   Interfaz web con HTML, CSS y JavaScript (sin frameworks)
 
 ## Estructura del proyecto
 
@@ -41,6 +42,7 @@ prioridad, y agregar comentarios de seguimiento.
 mesa-incidencias/
 ├── .github/workflows/  CI con GitHub Actions
 ├── backend/            API (db.js, index.js) y pruebas (index.test.js)
+├── frontend/           Interfaz web (HTML, CSS y JavaScript)
 ├── db/
 │   ├── schema.sql      Tablas e índices
 │   └── seed.sql        Datos de prueba
@@ -103,6 +105,7 @@ node index.js
 ```
 
 La API queda disponible en `http://localhost:3000`.
+La interfaz web está en la misma dirección.
 
 Crear una incidencia:
 
@@ -169,7 +172,8 @@ Actions (ver `.github/workflows/test.yml`).
 
 ## Próximos pasos
 
-*   Frontend para gestionar las incidencias.
+*   Filtros por estado y prioridad.
+*   Autenticación de usuarios.
 
 ## Licencia
 

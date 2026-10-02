@@ -1,5 +1,7 @@
 # Mesa de Incidencias
 
+![Tests](https://github.com/fabian-salinas-rojas/mesa-incidencias/actions/workflows/test.yml/badge.svg)
+
 API REST para registrar y dar seguimiento a incidencias de soporte técnico.
 Permite crear incidencias, asignarlas a técnicos, cambiar su estado y
 prioridad, y agregar comentarios de seguimiento.
@@ -30,6 +32,8 @@ prioridad, y agregar comentarios de seguimiento.
     [Docker Compose](https://docs.docker.com/compose/)
 *   Librerías [`pg`](https://node-postgres.com/) y
     [`dotenv`](https://github.com/motdotla/dotenv)
+*   Pruebas con [Jest](https://jestjs.io/) y
+    [Supertest](https://github.com/ladjs/supertest)
 
 ## Estructura del proyecto
 
@@ -158,6 +162,9 @@ Con la base de datos levantada:
 cd backend
 npm test
 ```
+
+Las pruebas también se ejecutan automáticamente en cada push con GitHub
+Actions (ver `.github/workflows/test.yml`).
 
 ## Próximos pasos
 
